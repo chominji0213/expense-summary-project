@@ -35,3 +35,6 @@ build/
 ### 이 프로젝트만의 설정 (실제 DB 비밀번호 포함, 커밋 금지) ###
 application.properties
 !application.properties.example
+
+### 남은 잔여 이클립스 워크스페이스 캐시 (삭제 불가, git에서만 제외) ###
+.metadata/
