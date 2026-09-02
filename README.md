@@ -117,10 +117,7 @@ GET  http://localhost:8080/api/expense/summary   # LLM 요약
 
 ## 알게 된 점 / 트러블슈팅
 
-- **Oracle 예약어를 컬럼명으로 쓸 수 없음**: Entity 필드명 `date`가 Oracle의 예약어라서 `ORA-00904` 에러가 발생. `@Column(name = "expense_date")`로 실제 컬럼명을 매핑해 해결.
 - **`@PathVariable`과 URL 경로 변수명은 반드시 일치해야 함**: `@GetMapping("/{id}")`에 매개변수명이 다르면(`expenseId`) "Missing URI template variable" 에러 발생. 경로와 매개변수명을 통일해 해결.
-- **`ddl-auto=update`는 컬럼을 새로 추가만 하고, 이름 변경/삭제는 하지 않음**: Entity 필드명 오타(`amout` → `amount`)를 고쳐도 기존 컬럼은 그대로 남고 새 컬럼만 추가됨. 개발 초기에는 테이블을 지우고 재생성하는 방식으로 대응.
-- **Docker 볼륨이 남아있으면 컨테이너를 새로 만들어도 초기화 스크립트가 재실행되지 않음**: 기존 데이터 볼륨이 있으면 계정 생성 스크립트가 스킵되어, 새로 만든 컨테이너에서 계정이 없는 것처럼 보일 수 있음.
 - **`RestTemplate`보다 `RestClient` 사용**: Spring 6.1+ 권장 방식에 맞춰 최신 API인 `RestClient`로 FastAPI 연동을 구현.
 - **외부 서버 호출은 항상 try-catch로 감싸야 함**: FastAPI 서버가 꺼져있는 상태에서 호출하면 예외가 그대로 전파되어 500 에러 화면이 노출됨. `RestClientException`을 잡아 사용자 친화적 메시지로 대체.
 
