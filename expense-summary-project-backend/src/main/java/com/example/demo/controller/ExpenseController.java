@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.entity.Expense;
 import com.example.demo.service.ExpenseService;
+import com.example.demo.service.SummaryService;
 
 @RestController
 @RequestMapping("/api/expense")
@@ -21,6 +22,9 @@ public class ExpenseController {
 	
 	@Autowired
 	private ExpenseService expenseService;
+	
+	@Autowired
+	private SummaryService summaryService;
 	
 	/**
 	 * 전체조회
@@ -69,5 +73,22 @@ public class ExpenseController {
 	@DeleteMapping("/{expenseId}")
 	public void deleteExpense(@PathVariable Long expenseId) {
 		expenseService.deleteExpense(expenseId);
+	}
+	
+	/**
+	 * 파이썬 LLM Summary 결과 가져오는 API
+	 * @return
+	 */
+	@GetMapping("/summary")
+	public String getSummary() {
+		List<Expense> expense = expenseService.getAllExpense();
+		
+		if(expense.isEmpty()) {
+			return "이번달 지출 내역이 없어요.";
+		}
+		
+		String summary = summaryService.getSummary(expense);
+		
+		return summary;
 	}
 }
