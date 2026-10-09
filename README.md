@@ -119,7 +119,7 @@ GET  http://localhost:8080/api/expense/summary   # LLM 요약
 
 - **`@PathVariable`과 URL 경로 변수명은 반드시 일치해야 함**: `@GetMapping("/{id}")`에 매개변수명이 다르면(`expenseId`) "Missing URI template variable" 에러 발생. 경로와 매개변수명을 통일해 해결.
 - **`RestTemplate`보다 `RestClient` 사용**: Spring 6.1+ 권장 방식에 맞춰 최신 API인 `RestClient`로 FastAPI 연동을 구현.
-- **외부 서버 호출은 항상 try-catch로 감싸야 함**: FastAPI 서버가 꺼져있는 상태에서 호출하면 예외가 그대로 전파되어 500 에러 화면이 노출됨. `RestClientException`을 잡아 사용자 친화적 메시지로 대체.
+- **외부 서버 호출은 항상 try-catch로 감싸야 함**: FastAPI 서버가 꺼져있는 상태에서 호출하면 예외가 그대로 전파되어 500 에러 화면이 노출됨. 모든 예외를 잡아 사용자 친화적 메시지로 대체.
 
 ## 참고
 
