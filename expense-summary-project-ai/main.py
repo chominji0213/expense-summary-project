@@ -46,8 +46,6 @@ def summarize(request: SummaryRequest):
     result = llm.invoke([HumanMessage(content=prompt)])
     summary_text = result.content[0]['text']
 
-    rprint(summary_text)
-
     return SummaryResponse(summary=summary_text)
 
 if __name__ == "__main__":
