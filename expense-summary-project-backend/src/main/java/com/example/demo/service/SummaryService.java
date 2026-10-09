@@ -26,7 +26,7 @@ public class SummaryService {
 		
 			return summaryResponseDto.getSummary();
 		} catch (Exception e) {
-			// TODO: handle exception
+			// FastAPI 서버 연결 실패 등 예외 발생 시 사용자에게 안내 메시지로 대체
 			return "서버와 연결하지 못했습니다. 다시 시도해주세요";
 		}
 	}
