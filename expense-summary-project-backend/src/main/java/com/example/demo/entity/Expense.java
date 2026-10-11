@@ -16,11 +16,11 @@ import lombok.Setter;
 @Setter
 public class Expense {
 	
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	/**
 	 * 고유 ID
 	 */
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
 	/**
@@ -32,11 +32,11 @@ public class Expense {
 	 * 지출금액
 	 */
 	private Integer amount;
-	
-	@Column(name = "expense_date")
+		
 	/**
 	 * 지출날짜
 	 */
+	@Column(name = "expense_date")
 	private LocalDate date;
 	
 	/**
